@@ -1,0 +1,12 @@
+extends layout
+block body
+    div(class='container', style='text-align: center;')
+        div(class='page-header')
+            h4 Drool - made by Lilian A. Moraru
+        br
+        p Here is a video demo(for desktops):
+        div(class='row')
+            div(class='col-md-12')
+                video(id='videoFrame', height='50%', width='50%', controls)
+                    source(src='videos/stream.mp4', type='video/mp4')
+                    p Your browser does not support the video tag

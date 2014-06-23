@@ -1,0 +1,41 @@
+extends layout
+block body
+    div(ng-controller='AppCtrl', align='center')
+        div(class='row')
+            div(class='col-md-6')
+                div(class='row')
+                    div(class='col-md-12')
+                        div(class='input-group', style='width: 300px')
+                            div(class='input-group-btn')
+                                button(type='button', class='btn btn-default dropdown-toggle', data-toggle='dropdown') {{obj.currentMarket}}
+                                    span(class='caret')
+                                ul(class='dropdown-menu')
+                                    li(ng-repeat='market in obj.markets')
+                                        choose-market
+                            input(type='text', class='form-control', ng-model='obj.currencyValue', ng-change='obj.compute()', ng-click='obj.modifyCurrency(false)')
+                            span(class='input-group-addon', ng-click='obj.currencyCollapsed = !obj.currencyCollapsed') {{obj.typeOfVirtualCurrency}}
+                                span(class='caret')
+                div(class='row')
+                    div(collapse='obj.currencyCollapsed')
+                        div(class='col-md-12')
+                            div(class='well', style='margin-top: 30px; width: 300px; overflow: hidden;')
+                                ul(class='nav nav-pills nav-stacked')
+                                    li(ng-repeat='virtualCurrency in obj.virtualCurrencies')
+                                        choose-virtual-currency
+            div(class='col-md-6', style='margin-top: 2px')
+                div(class='row')
+                    div(class='col-md-12')
+                        div(class='input-group', style='width: 300px')
+                            input(type='text', class='form-control', ng-model='obj.exchangeValue', ng-change='obj.compute()', ng-click='obj.modifyCurrency(true)')
+                            span(class='input-group-addon', ng-click='obj.valueCollapsed = !obj.valueCollapsed') {{obj.typeOfValue}}
+                                span(class='caret')
+                div(collapse='obj.valueCollapsed')
+                    div(class='row')
+                        div(class='col-md-12')
+                            div(class='well', style='margin-top: 30px; width: 300px; overflow: hidden;')
+                                form(class='form-search')
+                                    ul(class='nav nav-pills nav-stacked')
+                                        li(ng-animate="'animate'", ng-repeat='currency in obj.currencies | filter:search | limitTo:5')
+                                            choose-conversion
+                                    div(class='input-append')
+                                        input(type='text', ng-model='search', class='search-query', style='width: 200px')

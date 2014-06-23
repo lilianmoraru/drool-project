@@ -1,0 +1,135 @@
+extends layout
+
+block body
+    div(class='page-header')
+        h1 API Documentation
+
+    h3 URL:
+    p The base URL is:
+    div(class='panel panel-default')
+        div(class='panel-body')
+            a http://drool.cloudapp.net/api/1.0/
+    p There is only 1 allowed HTTP Method:
+        a  GET
+    p A wrong URL will redirect to a 404 error code page.
+
+    div(class='page-header')
+        h2 Markets:
+
+    div(class='panel panel-default')
+        div(class='panel-body')
+            a GET /markets
+    p Gives information about the available markets and their separate responses
+    p The available market keys are:
+        a(href='https://www.bitfinex.com/', target='_blank')  Bitfinex
+        a(href='https://www.bitstamp.net/', target='_blank')  Bitstamp
+        a(href='https://hitbtc.com/', target='_blank')  HitBTC
+    h4 Parameters:
+        div(class='list-group')
+            a(class='list-group-item')
+                h4(class='list-group-item-heading') key = "key-value"
+                h5(class='list-group-item-text') Filters the content by "key"("Bitfinex", "Bitstamp"...). Must be a proper URL encoded JSON value
+            a(class='list-group-item')
+                h4(class='list-group-item-heading') keys = [array of "key-values"]
+                h5(class='list-group-item-text') Must be a proper URL encoded JSON array value. Filters the content by the passed keys
+            a(class='list-group-item')
+                h4(class='list-group-item-heading') startkey = "key-value"
+                h5(class='list-group-item-text') Filters the content starting with the key passed to "startkey"
+            a(class='list-group-item')
+                h4(class='list-group-item-heading') endkey = "key-value"
+                h5(class='list-group-item-text') Displays all the content until it reaches "endkey"
+            a(class='list-group-item')
+                h4(class='list-group-item-heading') descending = true/false
+                h5(class='list-group-item-text') Change the direction of the search
+            a(class='list-group-item')
+                h4(class='list-group-item-heading') skip = number of docs
+                h5(class='list-group-item-text') Skip n number of documents
+
+    h4 Example request:
+        div(class='panel panel-default')
+            div(class='panel-heading')
+                a GET
+                a
+                    i  http://drool.cloudapp.net/api/1.0/markets?descending=false&startkey="Bitstamp"&endkey="HitBTC"
+            div(class='panel-body')
+                pre
+                    code.
+                        [
+                           {
+                              "key":"Bitstamp",
+                              "value":[
+                                 {
+                                    "btcusd":{
+                                       "high":"605.05",
+                                       "last":"599.28",
+                                       "timestamp":"1403489440",
+                                       "bid":"597.03",
+                                       "vwap":"600.25",
+                                       "volume":"3185.93878504",
+                                       "low":"594.00",
+                                       "ask":"599.81"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "key":"HitBTC",
+                              "value":[
+                                 {
+                                    "btcusd":{
+                                       "ask":"598.89",
+                                       "bid":"597.73",
+                                       "last":"599.9",
+                                       "low":"595.47",
+                                       "high":"609.41",
+                                       "volume":650.69,
+                                       "timestamp":1403489447864
+                                    }
+                                 },
+                                 {
+                                    "ltcusd":{
+                                       "ask":"9.774",
+                                       "bid":"9.715",
+                                       "last":"9.791",
+                                       "low":"9.722",
+                                       "high":"9.975",
+                                       "volume":347.5,
+                                       "timestamp":1403489447964
+                                    }
+                                 },
+                                 {
+                                    "ltcbtc":{
+                                       "ask":"0.01632",
+                                       "bid":"0.01629",
+                                       "last":"0.01629",
+                                       "low":"0.01622",
+                                       "high":"0.0165",
+                                       "volume":583.8,
+                                       "timestamp":1403489447971
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+
+    div(class='page-header')
+        h2 Status:
+
+    div(class='panel panel-default')
+        div(class='panel-body')
+            a GET /status
+
+    p Gives information about the status of the API server("available" or "offline")
+
+    h4 Example request:
+    div(class='panel panel-default')
+        div(class='panel-heading')
+            a GET
+            a
+                i  http://drool.cloudapp.net/api/1.0/status
+        div(class='panel-body')
+            pre
+                code.
+                    {
+                       "status":"available"
+                    }

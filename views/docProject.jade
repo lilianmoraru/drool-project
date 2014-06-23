@@ -1,0 +1,87 @@
+extends layout
+block body
+    div(class='row')
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/nodejs.png', width='50%', height='50%')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a NodeJS
+                    p Used to serve as a web server. Here the data is pulled from all the external APIs and collected into CouchDB through NodeJS.
+                    p Then the data is used to serve information to the client application.
+                    p
+                        a(class='btn btn-default', role='button', href='http://nodejs.org/', target='_blank') Visit NodeJS' Site
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/couchdb.jpg', width='40%', height='40%')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a CouchDB
+                    p Used to store all the data that the NodeJS server collects from the external APIs. It serves it's data through a REST API.
+                    p That allows us to just pass the API call we receive directly to CouchDB.
+                    p
+                        a(class='btn btn-default', role='button', href='http://couchdb.apache.org/', target='_blank') Visit CouchDB's Site
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/angularjs.jpg')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a AngularJS
+                    p Used to update the data in real-time. It offers modules that make the development easier. Someone can think of them as libraries.
+                    p
+                        a(class='btn btn-default', role='button', href='https://angularjs.org/', target='_blank') Visit AngularJS' Site
+
+    div(class='row')
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/bootstrap.png', width='60%', height='60%')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a Bootstrap
+                    p Used to make a responsive design, capable of adapting a user interface to different form factors.
+                    p
+                        a(class='btn btn-default', role='button', href='http://getbootstrap.com/', target='_blank') Visit Bootstrap's Site
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/expressjs.png')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a ExpressJS
+                    p Used to ease the configuration of the web server.
+                    p
+                        a(class='btn btn-default', role='button', href='http://expressjs.com/', target='_blank') Visit ExpressJS' Site
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/jade.png')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a Jade
+                    p Used to write the user interface in a easily readable code style. It compiles then the .jade files into HTML while at the same time minifying the html file.
+                    p
+                        a(class='btn btn-default', role='button', href='http://jade-lang.com/', target='_blank') Visit Jade's Site
+
+    div(class='row')
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/bitfinex.png')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a Bitfinex API
+                    p
+                        a(class='btn btn-default', role='button', href='https://www.bitfinex.com/', target='_blank') Visit Bitfinex's Site
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/bitstamp.png')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a Bitstamp API
+                    p
+                        a(class='btn btn-default', role='button', href='https://www.bitstamp.net/', target='_blank') Visit Bitstamp's Site
+        div(class='col-md-4')
+            div(class='thumbnail')
+                img(src='images/HItbtc.png')
+                div(class='caption', style='text-align: center;')
+                    h3
+                        a HitBTC API
+                    p
+                        a(class='btn btn-default', role='button', href='https://hitbtc.com/', target='_blank') Visit HitBTC's Site
