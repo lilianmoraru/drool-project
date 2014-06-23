@@ -10,6 +10,8 @@ var connect = new(cradle.Connection)('http://127.0.0.1', 5984, {
 
 var db = connect.database('markets');
 
+///Obtaining data from the database of the available market APIs and populating "markets" with it
+// for later dynamic pulling of data from external APIs
 var markets = [];
 db.get('_design/private/_view/market_symbols', function(err, doc) {
     if (err) {
@@ -23,8 +25,7 @@ db.get('_design/private/_view/market_symbols', function(err, doc) {
     }
 });
 
-//Initial refresh of data on server start-up
-//This function automatically will check if the links to the APIs are published, than it will update the documents
+///This function automatically will check if the links to the external APIs are published, then it will update the documents
 var loadData = function() {
     for (var idx in markets) {
         (function (idx) {
@@ -34,6 +35,7 @@ var loadData = function() {
             var linksDB = [];
             //buildJSON is used to build dynamically the data field with all the symbols in it
             var buildJSON = [];
+            //tasks is used to collect the functions that have to be executed consecutively
             var tasks = [];
 
             for (var it in markets[idx].symbols) {
@@ -54,6 +56,7 @@ var loadData = function() {
                 })(symbols);
             }
 
+            //Each function depends on the data the previous function built, so we execute them consecutively with waterfall
             async.waterfall(tasks, function(err) {
                 db.save(markets[idx].market, {data: buildJSON, links: linksDB, streaming: markets[idx].streaming, symbols: symbolsDB},
                     function (error, res, body) {
@@ -66,6 +69,8 @@ var loadData = function() {
     }
 }
 
+///Loads data from openexchangerates.org to be used later to convert USD -> to any other currency.
+///This is needed because the digital currency markets offer us only conversions to USD
 var loadExchangeData = function() {
     request.get('http://openexchangerates.org/api/latest.json?app_id=d48a40857f20411eaa58f17f17146c1c', function(error, res, body) {
         if (!error && res.statusCode == 200) {
@@ -85,4 +90,5 @@ var loadExchangeData = function() {
 //loadData();
 //Refreshing the data every 10 minutes(limitation by the services in use, otherwise you get banned)
 setInterval(loadData, 600000);
+//Same here, the data is refreshed every 4 hours because we are allowed a maximum of 100 API calls per month
 setInterval(loadExchangeData, 28800000);

@@ -1,7 +1,6 @@
 'use strict';
 
 /* Directives */
-
 var app = angular.module('myApp.directives', []);
 
 app.directive('chooseConversion', function ($q, $http) {
@@ -14,6 +13,7 @@ app.directive('chooseConversion', function ($q, $http) {
                 scope.obj.typeOfValue = currency;
                 scope.obj.valueCollapsed = !scope.obj.valueCollapsed;
 
+                ///Obtaining the exchange rate for the currently selected currency, ex: USD -> RON or USD -> GBL
                 $http.get('/data/' + currency).success(function (data) {
                     scope.obj.exchangeRate = data.exchangeValue;
                     scope.obj.refreshData = true;

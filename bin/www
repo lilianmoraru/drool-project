@@ -4,6 +4,7 @@ var app = require('../app');
 
 app.set('port', process.env.PORT || 3000);
 
+///Starting the web server
 var server = app.listen(app.get('port'), function() {
     console.log('Server started on port ' + server.address().port);
     debug('Express server listening on port ' + server.address().port);

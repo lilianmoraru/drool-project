@@ -13,7 +13,7 @@ var about = require('./routes/about');
 
 var app = express();
 
-// view engine setup
+///View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+///Defining the routes. If a false route is passed, the user gets redirected to an Error 404 page
 app.use('/', routes);
 app.use('/api/1.0/markets', markets.marketsData);
 app.use('/api/1.0/status', markets.apiStatus);

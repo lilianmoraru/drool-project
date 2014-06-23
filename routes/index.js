@@ -23,9 +23,7 @@ currency.get('_design/private/_view/getCurrencies', function(err, doc) {
         for (var idx in doc) {
             currencies.push(doc[idx].key);
         }
-        //currencies.push("LTC");
     }
-    //exchangeValue = 1;
 });
 
 ///Loading the available markets
@@ -40,7 +38,7 @@ marketsDB.get('_design/public/_view/markets', function(err, doc) {
     }
 });
 
-/* GET home page. */
+/* GET the home page. */
 router.get('/', function(req, res) {
     res.set({'Allow': 'GET', 'Connection':'close'});
     res.render('index');
@@ -74,7 +72,9 @@ router.get('/data', function(req, res) {
     res.send({currencies: currencies});
 });
 
-//
+///Returns data in the form of {"btcusd":"[value]", "ltcAvailable":true/false, "ltcusd":"[value]", "ltcbtc":"[value]"}
+///"ltcusd" and "ltcbtc" are returned only if "ltcAvailable" is true
+///The data is filtered to a specific market by passing a "key"
 router.param('market', function(req, res, next, key) {
     if (key.length < 9) {
         marketsDB.get('_design/private/_view/markets_filtered?key="' + key + '"', function(err, doc) {

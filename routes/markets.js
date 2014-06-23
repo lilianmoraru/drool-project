@@ -19,6 +19,7 @@ db.exists(function(err, exists) {
     }
 });
 
+///Returns all the available markets and their data while applying the filters passed by the user
 exports.marketsData = router.get('/', function(req, res) {
     db.get('_design/public/_view/markets' + ((s = req._parsedUrl.search) ? s : '') , function (err, doc) {
         if (err) {
