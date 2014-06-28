@@ -18,7 +18,7 @@ git clone https://github.com/lilianmoraru/drool-project.git
 
 **From within the ``drool-project`` folder now start the server with:**
 ```
-node bin/www
+node ./bin/www
 ```
 The server will be started on port 3000. 
 Now you can load the page in the web browser `http://127.0.0.1:3000`
