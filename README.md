@@ -1,6 +1,5 @@
 Drool - Digital Currency Convertor
 =========
-***
 
 How to set up:
 ---
