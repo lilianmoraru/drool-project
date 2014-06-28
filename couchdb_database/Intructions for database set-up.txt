@@ -1,0 +1,7 @@
+- Install CouchDB from: http://couchdb.apache.org/
+- Copy the "couchdb" folder into:
+	* "/var/lib/" - on Unix-based systems
+	* On Windows in "[the install path of CouchDB]\var\lib":
+		- Usually "C:\Program Files (x86)\Apache Software Foundation\CouchDB\var\lib" - on 64-bit
+		- Or "C:\Program Files\Apache Software Foundation\CouchDB\var\lib" - on 32-bit
+- There will be a folder called "couchdb" in "/var/lib", just overwrite it.
